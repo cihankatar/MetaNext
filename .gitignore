@@ -1,0 +1,13 @@
+test/images/**
+test/masks/**
+
+val/images/**
+val/masks/**
+
+train/images/**
+train/masks/**
+
+modelsave/**
+
+*.DS_Store
+*.JPG
