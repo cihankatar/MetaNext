@@ -63,6 +63,14 @@ def main():
     #l_r         = args.learningrate
     #num_workers = 2
 
+<<<<<<< HEAD
+=======
+    n_classes   = 1
+    batch_size  = 4   
+    epochs      = 200
+    l_r         = 0.0001
+    num_workers = 2
+>>>>>>> dcca761 (n)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("Using device: ", device, f"({torch.cuda.get_device_name(device)})" if torch.cuda.is_available() else "")
