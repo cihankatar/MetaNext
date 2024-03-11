@@ -72,7 +72,7 @@ class KVasir_dataset(Dataset):
             mask=both_images[3]
             mask = mask.unsqueeze(0)
 
-            cut = Cutout(0.01,25)
+            cut = Cutout(0.5,25)
             image,mask=cut(image,mask)
             image=image/255
             mask=mask/255.001
