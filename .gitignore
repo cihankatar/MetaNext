@@ -9,5 +9,20 @@ train/masks/**
 
 modelsave/**
 
+<<<<<<< HEAD
 *.DS_Store
 *.JPG
+=======
+/data/images/**
+/data/masks/**
+
+/modelsave/**
+/slurm/**
+
+.DS_Store
+*.pth
+*.jpg
+
+*ipynb_checkpoints
+__pycache__
+>>>>>>> 9cbb501 (git)
