@@ -8,8 +8,6 @@ from models.Convnext import convnextv2_large
 import torch.nn as nn
 import torch.nn.functional as F
 
-
-
 def device_f():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     return device
