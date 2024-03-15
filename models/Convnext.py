@@ -53,8 +53,8 @@ class Block(nn.Module):
     """
     def __init__(self, dim, drop_path=0.):
         super().__init__()
-        #self.dwconv = nn.Conv2d(dim, dim, kernel_size=7, padding=3, groups=dim) # depthwise conv
-        self.dwconv = nn.Conv2d(dim, dim, kernel_size=5, padding='same', groups=dim) # depthwise conv
+        self.dwconv = nn.Conv2d(dim, dim, kernel_size=7, padding=3, groups=dim) # depthwise conv
+        #self.dwconv = nn.Conv2d(dim, dim, kernel_size=5, padding='same', groups=dim) # depthwise conv
 
         self.norm = LayerNorm(dim, eps=1e-6)
         self.pwconv1 = nn.Linear(dim, 4 * dim) # pointwise/1x1 convs, implemented with linear layers
@@ -135,12 +135,11 @@ class ConvNeXtV2(nn.Module):
             if i >= 1:
                 x = x+skip[i-1]
             x = self.stages[i](x)
-        return self.norm(x) 
+        return self.norm(x.permute(0, 2, 3, 1)).permute(0, 3, 1, 2) # (N, C, H, W) -> (N, H, W, C)) # (N, H, W, C) -> (N, C, H, W)
 
     def forward(self, x,skip):
         x = self.forward_features(x,skip)
         return x
-
 
 def convnextv2_atto(**kwargs):
     model = ConvNeXtV2(depths=[2, 2, 6, 2], dims=[40, 80, 160, 320], **kwargs)
