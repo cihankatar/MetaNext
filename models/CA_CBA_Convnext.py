@@ -4,7 +4,7 @@ import time
 from einops import rearrange, repeat
 import numpy as np
 from models.Metaformer import caformer_s18_in21ft1k
-from models.Convnext import convnext_pico
+from models.Convnext import convnextv2_large
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -125,7 +125,7 @@ class CA_CBA_Convnext(nn.Module):
         size_dec=[512,320,128,64]
 
         self.caformer        = caformer_s18_in21ft1k()
-        self.convnextdecoder = convnext_pico()
+        self.convnextdecoder = convnextv2_large()
 
         self.CBA            = nn.ModuleList([BasicBlock(in_f, out_f) for in_f, out_f in zip(size_dec[::-1],size_dec[::-1])])  
 

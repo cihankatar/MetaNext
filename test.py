@@ -145,8 +145,7 @@ if __name__ == "__main__":
 
                 print(f" Jaccard (IoU): {jaccard:1.4f} - F1(Dice): {f1:1.4f} - Recall: {recall:1.4f} - Precision: {precision:1.4f} - Acc: {acc:1.4f}")
                 print(len(test_loader))
-
-
+                
 '''
 #### to show current output of model 
 

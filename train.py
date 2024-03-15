@@ -64,7 +64,7 @@ def main():
     #num_workers = 2
 
     n_classes   = 1
-    batch_size  = 4   
+    batch_size  = 8   
     epochs      = 200
     l_r         = 0.0001
     num_workers = 2
@@ -82,10 +82,10 @@ def main():
     #model5 = Conv_Former_Unet(n_classes).to(device)
     #model6 = Conv_CBA_Convnext(n_classes).to(device)
     #model2 = UNET_Convformer(n_classes).to(device) 
-    # model3 = UNET_ViT_Wavenet_m(n_classes).to(device) 
-    # model7 = MetaPolyp(n_classes).to(device)
-    # model5 = TransUNet_copy(img_dim=128,in_channels=3,out_channels=128,head_num=4,mlp_dim=512,block_num=8,encoder_scale=16,class_num=1).to(device) #1.5  5.3
-    # model7 = ViT_segm(images_dim=128,input_channel=3,token_dim=768, n_heads=4, mlp_layer_size=512, t_blocks=12, patch_size=8, classification=False).to(device)
+    #model3 = UNET_ViT_Wavenet_m(n_classes).to(device) 
+    #model7 = MetaPolyp(n_classes).to(device)
+    #model5 = TransUNet_copy(img_dim=128,in_channels=3,out_channels=128,head_num=4,mlp_dim=512,block_num=8,encoder_scale=16,class_num=1).to(device) #1.5  5.3
+    #model7 = ViT_segm(images_dim=128,input_channel=3,token_dim=768, n_heads=4, mlp_layer_size=512, t_blocks=12, patch_size=8, classification=False).to(device)
     
     
     # all_models=[model0,model1,model2,model3,model4,model5,model6]
@@ -100,6 +100,7 @@ def main():
 
     optimizer = Adam(model.parameters(), lr=l_r)
     loss_function = Dice_CE_Loss()
+    scheduler=torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, 200, eta_min=0.00001, last_epoch=-1)
 
     for epoch in trange(epochs, desc="Training"):
 
@@ -129,6 +130,7 @@ def main():
             optimizer.zero_grad()
             train_loss.backward()
             optimizer.step()
+            scheduler.step()
             #end=timer.time()
             #print(end-start)
 
