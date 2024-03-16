@@ -75,7 +75,7 @@ class KVasir_dataset(Dataset):
             cut = Cutout(0.5,25)
             image,mask=cut(image,mask)
             image=image/255
-            mask=mask/255.001
+            mask=mask/255.0001
             
             return image , mask
 
