@@ -41,12 +41,6 @@ def main():
 
     args=parser.parse_args()
     args.model=0
-
-    n_classes   = 1
-    batch_size  = 4   
-    epochs      = 200
-    l_r         = 0.0001
-    num_workers = 2
     
     #parser.add_argument("-b", "--batch", type=int)   # -m 0  || --model=0
     #parser.add_argument("-e", "--epochs", type=int)   # -m 0  || --model=0
