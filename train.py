@@ -103,7 +103,6 @@ def main():
         model.train()
         
         for batch in train_loader:
-            tr=v2.Normalize (mean=(0.400, 0.485, 0.456, 0.406), std=(0,222, 0.229, 0.224, 0.225))
             images,labels   = batch  
             images,labels   = images.to(device), labels.to(device)
             images,labels   = cutmix (images,labels)
