@@ -55,6 +55,7 @@ class KVasir_dataset(Dataset):
             image = image.astype(np.float32)
             image = np.transpose(image, (2, 0, 1))
             image = torch.from_numpy(image)
+            image = self.tr(image)
 
             #if self.transforms is not None:
              #   image = self.transforms(image)
@@ -65,17 +66,18 @@ class KVasir_dataset(Dataset):
             mask = mask.astype(np.float32)
             mask = torch.from_numpy(mask)
             mask = mask.unsqueeze(0)
+            mask = self.tr(mask)
 
-            both_images = torch.cat((image, mask),0)
-            both_images = self.tr(both_images)
-            image=both_images[0:3] 
-            mask=both_images[3]
-            mask = mask.unsqueeze(0)
+            #both_images = torch.cat((image, mask),0)
+           # both_images = self.tr(both_images)
+           # image=both_images[0:3] 
+           # mask=both_images[3]
+           # mask = mask.unsqueeze(0)
 
-            cut = Cutout(0.5,25)
-            image,mask=cut(image,mask)
-            image=image/255
-            mask=mask/255.001
+            #cut = Cutout(0.5,25)
+            #image,mask=cut(image,mask)
+            #image=image/255
+            #mask=mask/255.001
             
             return image , mask
 
