@@ -59,7 +59,7 @@ def main():
     #num_workers = 2
 
     n_classes   = 1
-    batch_size  = 8   
+    batch_size  = 4   
     epochs      = 200
     l_r         = 0.0001
     num_workers = 2
