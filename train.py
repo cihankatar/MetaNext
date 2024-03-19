@@ -12,6 +12,7 @@ from utils.data_loader import loader
 from utils.Loss import Dice_CE_Loss
 from utils.cutmix import cutmix
 from models.CA_CBA_Convnext import CA_CBA_Convnext
+from torchvision.transforms import v2 
 
 # from models.Unet_sep import UNET_sep
 # from models.CA_Former_Convnext import CA_Former_Convnext
@@ -40,12 +41,6 @@ def main():
 
     args=parser.parse_args()
     args.model=0
-
-    n_classes   = 1
-    batch_size  = 4   
-    epochs      = 200
-    l_r         = 0.0001
-    num_workers = 2
     
     #parser.add_argument("-b", "--batch", type=int)   # -m 0  || --model=0
     #parser.add_argument("-e", "--epochs", type=int)   # -m 0  || --model=0
@@ -108,7 +103,7 @@ def main():
         model.train()
         
         for batch in train_loader:
-
+            tr=v2.Normalize (mean=(0.400, 0.485, 0.456, 0.406), std=(0,222, 0.229, 0.224, 0.225))
             images,labels   = batch  
             images,labels   = images.to(device), labels.to(device)
             images,labels   = cutmix (images,labels)
