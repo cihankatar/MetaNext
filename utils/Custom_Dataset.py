@@ -78,9 +78,7 @@ class KVasir_dataset(Dataset):
             mask=mask/255.001
             
             return image , mask
-
-import matplotlib.pyplot as plt
-
+    
 # image=image.permute(2,1,0)
 # label=mask.permute(2,1,0)
 # plt.figure()
