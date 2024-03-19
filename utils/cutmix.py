@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+from torchvision.transforms import v2 
 
 def rand_bbox(size):
         
@@ -21,11 +22,13 @@ def rand_bbox(size):
     return bbx1, bby1, bbx2, bby2
 
 def cutmix(images,labels):
+    tr=v2.RandomPhotometricDistort(p=1)
     if np.random.rand(1) < 0.5:
         rand_index = torch.randperm(images.size()[0])
         bbx1, bby1, bbx2, bby2 = rand_bbox(images.size())
         images[:, :, bbx1:bbx2, bby1:bby2] = images[rand_index, :, bbx1:bbx2, bby1:bby2]
         labels[:, :, bbx1:bbx2, bby1:bby2] = labels[rand_index, :, bbx1:bbx2, bby1:bby2]
+        images = tr(images)
     return images,labels
     
 

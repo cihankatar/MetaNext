@@ -14,12 +14,10 @@ def loader(batch_size,num_workers,shuffle):
 # if not os.path.exists(train_im_path):
     # split_main()
 
-    transformations = v2.Compose([  v2.Resize([256,256],antialias=True),
-                                    v2.RandomPhotometricDistort(p=0.5),       
+    transformations = v2.Compose([  v2.Resize([256,256],antialias=True),                                           
                                     v2.RandomHorizontalFlip(p=0.5),
                                     v2.RandomVerticalFlip(p=0.5),
                                     v2.RandomRotation(degrees=(0, 90)),
-                                   
                                     #v2.Normalize(mean=(0.400, 0.485, 0.456, 0.406), std=(0,222, 0.229, 0.224, 0.225))                              
                                   ])
  

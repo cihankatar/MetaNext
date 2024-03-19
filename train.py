@@ -59,7 +59,7 @@ def main():
     #num_workers = 2
 
     n_classes   = 1
-    batch_size  = 4   
+    batch_size  = 8   
     epochs      = 200
     l_r         = 0.0001
     num_workers = 2
@@ -84,6 +84,7 @@ def main():
     
     
     # all_models=[model0,model1,model2,model3,model4,model5,model6]
+
 
     all_models  = [model0]
     model       = all_models[args.model]
